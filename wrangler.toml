@@ -1,0 +1,12 @@
+name = "siadminsapa"
+main = "worker/index.js"
+compatibility_date = "2026-08-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "siadminsapa"
+database_id = "ed11eb78-e2e6-4ab1-8161-65ea69aa2798"
+
+# Secrets (JANGAN taruh nilai asli di sini — set lewat CLI):
+#   wrangler secret put JWT_SECRET
+#   wrangler secret put GDRIVE_SA_JSON
