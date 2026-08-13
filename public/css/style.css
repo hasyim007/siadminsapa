@@ -1,0 +1,81 @@
+/* ============================================================
+   SIADMINSAPA — utility class custom, diambil verbatim dari
+   mockup asli (Mentahan_Siadminsapa.html). Warna/tipografi diatur
+   lewat tailwind.config di index.html (sapa/siadmin/bgsoft/dll).
+   Class Tailwind lain dipakai langsung di markup masing-masing view.
+   ============================================================ */
+
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F8FAFC; }
+
+/* Glassmorphism — dipakai selektif: hero & kartu layanan */
+.glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.glass-dark {
+  background: rgba(18, 59, 120, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.hero-bg {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(23, 105, 209, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 0%, rgba(18, 59, 120, 0.15), transparent 40%),
+    #F8FAFC;
+}
+.service-icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px;
+}
+.card-hover { transition: transform .25s ease, box-shadow .25s ease; }
+.card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(18,59,120,0.14); }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: #1769D1; border-radius: 8px; }
+
+[data-route-view] { display: none; }
+[data-route-view].active { display: block; }
+
+.status-badge { display:inline-flex; align-items:center; gap:.35rem; font-size:.72rem; font-weight:700; padding:.3rem .65rem; border-radius:999px; }
+.status-baru { background:#DBEAFE; color:#1D4ED8; }
+.status-diproses { background:#FEF3C7; color:#92400E; }
+.status-selesai { background:#DCFCE7; color:#15803D; }
+.status-ditolak { background:#FEE2E2; color:#B91C1C; }
+
+.sidebar-link { display:flex; align-items:center; gap:.65rem; padding:.65rem .9rem; border-radius:.65rem; font-size:.875rem; font-weight:600; color:#CBD5E1; transition: all .15s ease; cursor:pointer; }
+.sidebar-link:hover { background:rgba(255,255,255,.08); color:#fff; }
+.sidebar-link.active { background:#1769D1; color:#fff; }
+
+.admin-tab { padding:.5rem 1rem; border-radius:.6rem; font-size:.82rem; font-weight:700; color:#64748B; cursor:pointer; transition: all .15s ease; }
+.admin-tab.active { background:#123B78; color:#fff; }
+
+.modal-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.55); backdrop-filter: blur(3px); z-index:100; display:none; align-items:center; justify-content:center; padding:1rem; }
+.modal-backdrop.active { display:flex; }
+.modal-box { background:#fff; border-radius:1.25rem; max-width:32rem; width:100%; max-height:88vh; overflow-y:auto; }
+
+.field-label { font-size:.8rem; font-weight:700; color:#334155; margin-bottom:.3rem; display:block; }
+.field-input { width:100%; border:1px solid #E2E8F0; border-radius:.6rem; padding:.65rem .85rem; font-size:.875rem; outline:none; transition: border .15s ease, box-shadow .15s ease; }
+.field-input:focus { border-color:#1769D1; box-shadow:0 0 0 3px rgba(23,105,209,.12); }
+
+.toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(100px); background:#123B78; color:#fff; font-size:.85rem; font-weight:600; padding:.85rem 1.4rem; border-radius:.8rem; box-shadow:0 10px 30px rgba(18,59,120,.35); z-index:200; transition: transform .25s ease; }
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+/* Sidebar admin — drawer di mobile, statis di desktop */
+#adminSidebar {
+  position: fixed; inset-block: 0; left: 0; z-index: 60;
+  transform: translateX(-100%);
+  transition: transform .25s ease;
+}
+#adminSidebar.sidebar-open { transform: translateX(0); }
+@media (min-width: 1024px) {
+  #adminSidebar { position: static; transform: none; }
+}
+#sidebarBackdrop { position: fixed; inset: 0; background: rgba(15,23,42,.5); z-index: 50; display:none; }
+#sidebarBackdrop.show { display: block; }
+@media (min-width: 1024px) {
+  #sidebarBackdrop { display: none !important; }
+}

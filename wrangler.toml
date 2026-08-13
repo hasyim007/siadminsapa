@@ -1,0 +1,20 @@
+name = "siadminsapa"
+main = "worker/index.js"
+compatibility_date = "2026-08-01"
+
+# Tampilan (index.html, css/, js/) dilayani langsung dari sini oleh
+# Cloudflare — request ke /api/* baru diteruskan ke Worker di atas.
+# Jadi frontend + backend jadi SATU Worker, satu URL, satu deploy.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "siadminsapa"
+database_id = "2ea8caee-e5bb-4f56-be5b-4983b7cc00a8"
+
+# Secrets (JANGAN taruh nilai asli di sini — set lewat CLI):
+#   wrangler secret put JWT_SECRET
+#   wrangler secret put GDRIVE_SA_JSON
